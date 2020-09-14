@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /login
+Disallow: /add
+Sitemap: https://lsecrets.ru/sitemap.xml
