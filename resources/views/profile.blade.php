@@ -7,7 +7,8 @@
                 <div class="profile_user">
                     <div class="profile_user_img" style="background-image: url(/storage/images/avatars/{{ $user->avatar}});"></div>
                     <div class="profile_user_name">
-                        <p>{{$user->name}}</p>
+                        <p>{{$user->name}} {{$user->age}}</p>
+                        <p>Статус: {{$user->status}}</p>
                     </div>
                     @if($owner)
                         <div class="profile-user-upload">

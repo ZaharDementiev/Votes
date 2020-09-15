@@ -26,6 +26,12 @@ class FeedbackController extends Controller
             $feedback->points = $request->input('points');
             $feedback->positive = $request->input('positive');
 
+            if ($feedback->positive)
+                $transaction->receiver->rating += 2;
+            else
+                $transaction->receiver->rating -= 2;
+            $transaction->receiver->save();
+
             $feedback->payment_id = $transaction->id;
             $feedback->to_id = $transaction->to_id;
             $feedback->save();

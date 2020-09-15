@@ -274,9 +274,16 @@ class UserController extends Controller
 
     public function transactions($name)
     {
-        $user = User::with('transactions')->where('name', $name)->first();
-        return view('user-parts.transactions', [
-            'user' => $user
-        ]);
+        if (auth()->user()->gender == User::GENDER_MALE)
+        {
+            $user = User::with('transactions')->where('name', $name)->first();
+            return view('supports', [
+                'user' => $user
+            ]);
+        }
+        else
+        {
+            return redirect()->back();
+        }
     }
 }

@@ -2390,24 +2390,12 @@ a.bg-light:hover,a.bg-light:focus,button.bg-light:hover,button.bg-light:focus {
   flex-wrap: wrap !important;
 }
 
-.justify-content-start {
-  justify-content: flex-start !important;
-}
-
 .justify-content-center {
   justify-content: center !important;
 }
 
-.align-items-start {
-  align-items: flex-start !important;
-}
-
 .align-items-center {
   align-items: center !important;
-}
-
-.align-content-start {
-  align-content: flex-start !important;
 }
 
 .align-content-center {
@@ -2427,24 +2415,12 @@ a.bg-light:hover,a.bg-light:focus,button.bg-light:hover,button.bg-light:focus {
     flex-wrap: wrap !important;
   }
 
-  .justify-content-sm-start {
-    justify-content: flex-start !important;
-  }
-
   .justify-content-sm-center {
     justify-content: center !important;
   }
 
-  .align-items-sm-start {
-    align-items: flex-start !important;
-  }
-
   .align-items-sm-center {
     align-items: center !important;
-  }
-
-  .align-content-sm-start {
-    align-content: flex-start !important;
   }
 
   .align-content-sm-center {
@@ -2465,24 +2441,12 @@ a.bg-light:hover,a.bg-light:focus,button.bg-light:hover,button.bg-light:focus {
     flex-wrap: wrap !important;
   }
 
-  .justify-content-md-start {
-    justify-content: flex-start !important;
-  }
-
   .justify-content-md-center {
     justify-content: center !important;
   }
 
-  .align-items-md-start {
-    align-items: flex-start !important;
-  }
-
   .align-items-md-center {
     align-items: center !important;
-  }
-
-  .align-content-md-start {
-    align-content: flex-start !important;
   }
 
   .align-content-md-center {
@@ -2503,24 +2467,12 @@ a.bg-light:hover,a.bg-light:focus,button.bg-light:hover,button.bg-light:focus {
     flex-wrap: wrap !important;
   }
 
-  .justify-content-lg-start {
-    justify-content: flex-start !important;
-  }
-
   .justify-content-lg-center {
     justify-content: center !important;
   }
 
-  .align-items-lg-start {
-    align-items: flex-start !important;
-  }
-
   .align-items-lg-center {
     align-items: center !important;
-  }
-
-  .align-content-lg-start {
-    align-content: flex-start !important;
   }
 
   .align-content-lg-center {
