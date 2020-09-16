@@ -181,3 +181,4 @@ Route::get('feedback/{transaction}', 'FeedbackController@index')->name('feedback
 Route::post('feedbacks/submit/{transaction}', 'FeedbackController@store')->name('feedback-submit')->middleware('auth');
 Route::get('/transaction', 'TransactionController@transaction')->name('transaction')->middleware('auth');
 Route::post('transaction/submit', 'TransactionController@make')->name('transaction-submit')->middleware('auth');
+

@@ -68,7 +68,6 @@ window.onload = function () {
     const app = new Vue({
         el: '#app',
     });
-
     $(document).ready(function() {
 
 
@@ -205,11 +204,6 @@ window.onload = function () {
             return false;
         });
 
-        $('.edit_open').on('click', function() {
-            openPopUp($('#edit-post'));
-            return false;
-        });
-
         $('.signIn_open').on('click', function() {
             openPopUp($('#sign_in'));
             return false;
@@ -269,9 +263,11 @@ window.onload = function () {
             if ( $('.wrap-menu-window-mobile').hasClass('active') ) {
                 $('.wrap-menu-window-mobile').removeClass('active');
                 $('body').removeClass('noscroll');
+                $('.wrap-top_mobile_head').removeClass('active');
             }else{
                 $('.wrap-menu-window-mobile').addClass('active');
                 $('body').addClass('noscroll');
+                $('.wrap-top_mobile_head').addClass('active');
             }
             return false;
         });
@@ -327,15 +323,15 @@ window.onload = function () {
             wrap.find('.settings-content-el-body').slideUp(250);
         }
 
-        // $('form.form-settigns-el').on('submit', function(e) {
-        //     e.preventDefault();
-        //     closeSettignsEl($(this).closest('.settings-content-el'));
-        //     return false;
-        // });
+        $('form.form-settigns-el').on('submit', function(e) {
+            e.preventDefault();
+            closeSettignsEl($(this).closest('.settings-content-el'));
+            return false;
+        });
 
         if ( $(window).width() > 600 ) {
             // var el = $('.textarea-block__textarea').emojioneArea({
-            // 	search: false,
+            //  search: false,
             // });
             $('.inp_comment').click(function(){
                 $(this).focus();
@@ -436,16 +432,35 @@ window.onload = function () {
             }
         });
 
-
 // $('.confirm-email').click(function(){
-// 	$('.wrap-files').append(`</li><li class="file">
-// 		<div class="delete" title="Удалить"></div>
-// 		<img src="/img/slider/1.png" alt="">
-// 	</li>`);
+//  $('.wrap-files').append(`</li><li class="file">
+//    <div class="delete" title="Удалить"></div>
+//    <img src="/img/slider/1.png" alt="">
+//  </li>`);
 // });
 
-    });
+        $('.rating_action .rating-el').on('click', function() {
+            var wrap = $(this).closest('.rating_action');
+            wrap.find('.rating-el').removeClass('rating-el_active');
+            $(this).addClass('rating-el_active');
+            $(this).prevAll('.rating-el').addClass('rating-el_active');
+            wrap.find('.rating_action__inp').val( $(this).index() + 1 );
+        });
 
+
+        $('.profile-descrp__icon').on('click', function() {
+            openPopUp('#modal-settings');
+        });
+
+        $('.btnReview').on('click', function() {
+            openPopUp('#modal-review');
+            return false;
+        });
+
+
+
+
+    });
 };
 
 

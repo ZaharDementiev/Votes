@@ -39,10 +39,11 @@
     <link href="{{asset('css/site.css')}}" rel="stylesheet">
     {{--    <link rel="stylesheet" href="{{asset('css/all.css')}}">--}}
     <link rel="stylesheet" href="{{asset('css/jquery.fancybox.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
 </head>
 <body>
 <!-- Yandex.Metrika counter -->
-<script type="text/javascript" defer>
+<!--<script type="text/javascript" defer>
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
@@ -54,7 +55,7 @@
         webvisor:true
     });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/55702444" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/55702444" style="position:absolute; left:-9999px;" alt="" /></div></noscript>!-->
 {{--<!-- /Yandex.Metrika counter -->--}}
     <div class="wrapper-load" style="width: 100%; height: 99999px; z-index: 9999999999; position: absolute; background-color: #ffffff;
     @if(Route::current() && Route::current()->getName() == 'show')
@@ -469,7 +470,6 @@
     </div>
 
 @guest
-    <!-- PopUps start -->
     @if(Route::current())
             <div class="wrap-pop-up" id="sign_in"
                  @if(Route::current() && Route::current()->getName() == 'login')
@@ -733,6 +733,56 @@
     @endif
 @endguest
 
+<div class="wrap-pop-up popUp" id="modal-review">
+    <div class="pop-up-body popUp__body popUp__body_settings">
+        <div class="popUp__message">
+            <div class="close close-window"></div>
+            <div class="popUp__content">
+                <form id="form-feedback" method="post">
+                    @csrf
+                    <div class="block-title block-title_margin">
+                        <div class="block-title__title title_small">Оценить</div>
+                        <div class="rating rating_left rating_action">
+                            <div class="rating__el rating-el"></div>
+                            <div class="rating__el rating-el"></div>
+                            <div class="rating__el rating-el"></div>
+                            <div class="rating__el rating-el"></div>
+                            <div class="rating__el rating-el"></div>
+                            <input type="hidden" name="points" class="rating_action__inp" value="">
+                        </div>
+                    </div>
+
+                    <div class="block-title block-title_margin">
+                        <div class="block-title__title title_small">Оставить отзыв:</div>
+                        <div class="wrap-radio">
+                            <label class="wrap-radio__el radio-el">
+                  <span class="radio-el__inp radio">
+                    <input type="radio" name="positive" class="radio__inp" value="1">
+                    <span class="radio__dec">
+                      <span class="radio__dec-circle"></span>
+                    </span>
+                  </span>
+                                <span class="radio-el__text">Положительно</span>
+                            </label>
+                            <label class="wrap-radio__el radio-el">
+                  <span class="radio-el__inp radio">
+                    <input type="radio" name="positive" class="radio__inp" value="0">
+                    <span class="radio__dec">
+                      <span class="radio__dec-circle"></span>
+                    </span>
+                  </span>
+                                <span class="radio-el__text">Отрицательно</span>
+                            </label>
+                        </div>
+                        <textarea name="text" class="textarea block-title__textarea" maxlength="280"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn_big">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @yield('scripts')
 
 <script src="/js/jquery.fancybox.min.js"></script>
@@ -817,5 +867,15 @@
         });
     });
 </script>
+
+<script>
+    function openFeedbackForm(id)
+    {
+        let form = $('#form-feedback');
+        let url = '/feedbacks/submit/' + id;
+        form.attr('action', url);
+    }
+</script>
+
 </body>
 </html>

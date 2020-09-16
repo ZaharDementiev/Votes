@@ -15,6 +15,6 @@ class Feedback extends Model
 
     public function receiver()
     {
-        return $this->belongsTo(User::class, 'to_id');
+        return $this->belongsTo(User::class, 'to_id', 'id');
     }
 }
