@@ -547,19 +547,59 @@
             <div class="pop-up-body-authorization">
                 <div class="close close-window"></div>
                 <h4>Регистрация</h4>
-
-                <div class="bg-danger error" id="registerfailedFull">
-                    <i class="fa fa-times" aria-hidden="true"></i> Исправьте следующие ошибки:
-                </div>
-
-                <form id="formRegister">
+                <form class="form" id="formRegister">
+                    @csrf
                     <div class="body-authorization-top">
-                        <span style="opacity: 0.5;font-size: 14px;">Логин может состоять только из латинских букв, символов . - и цифр.</span>
+                        <div class="wrap-radio form__radio">
+                            <label class="wrap-radio__el radio-el">
+                                <span class="radio-el__text">Male:</span>
+                                <span class="radio-el__inp radio">
+                                    <input type="radio" name="sex" class="radio__inp" value="{{ \App\User::GENDER_MALE }}">
+                                    <span class="radio__dec">
+                                      <span class="radio__dec-circle"></span>
+                                    </span>
+                                  </span>
+                            </label>
+                            <label class="wrap-radio__el radio-el">
+                                <span class="radio-el__text">Female:</span>
+                                <span class="radio-el__inp radio">
+                                    <input type="radio" name="sex" class="radio__inp" value="{{ \App\User::GENDER_FEMALE }}">
+                                    <span class="radio__dec">
+                                      <span class="radio__dec-circle"></span>
+                                    </span>
+                                  </span>
+                            </label>
+                        </div>
+                        <div class="wrap-select form__select">
+                            <div class="wrap-select__title">Дата рождения:</div>
+                            <div class="wrap-select__content">
+                                <select class="select" name="year" required=""><option>Год</option>
+                                    @for($i = 2001; $i >= 1940; $i--)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                    </select>
+                                <select class="select" name="month" required=""><option>Месяц</option><option value="1">январь</option><option value="2">февраль</option><option value="3">март</option><option value="4">апрель</option><option value="5">май</option><option value="6">июнь</option><option value="7">июль</option><option value="8">август</option><option value="9">сентябрь</option></select>
+                                <select class="select" name="day" required=""><option>День</option>
+                                    @for($i = 1; $i <= 31; $i++)
+                                        <option value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                </select>
+                            </div>
+                        </div>
                         <div class="inputs">
-                            <input name="name" type="text" placeholder="Логин">
-                            <input name="email" type="text" placeholder="E-mail">
-                            <input name="password" type="password" placeholder="Пароль">
-                            <input name="password_confirmation" type="password" placeholder="Пароль ещё раз">
+                            <div class="inp-el">
+                                <div class="inp-el__text">Логин может состоять только из латинскиз букв, символов и цифр</div>
+                                <input type="text" name="name" placeholder="Логин">
+                            </div>
+                            <div class="inp-el">
+                                <input type="text" name="email" placeholder="E-mail">
+                            </div>
+                            <div class="inp-el">
+                                <input type="password" name="password" placeholder="Пароль">
+                            </div>
+                            <div class="inp-el">
+                                <input type="password" name="password_confirmation" placeholder="Пароль еще раз">
+                            </div>
                         </div>
                         <div class="wrap-checkbox unselectable">
                             <label>
@@ -573,31 +613,6 @@
                         <button type="submit">Создать аккаунт</button>
                         <div class="auth_btn signIn_open">
                             <a href="#">Авторизация</a>
-                        </div>
-                    </div>
-                    <div class="body-authorization-foot">
-                        <p>или</p>
-                        <div class="wrap-socials">
-                            <div class="social-el">
-                                <a href="#">
-                                    <img src="/img/socials/twitter.png" alt="">
-                                </a>
-                            </div>
-                            <div class="social-el">
-                                <a href="#">
-                                    <img src="/img/socials/vk.png" alt="">
-                                </a>
-                            </div>
-                            <div class="social-el">
-                                <a href="#">
-                                    <img src="/img/socials/facebook.png" alt="">
-                                </a>
-                            </div>
-                            <div class="social-el">
-                                <a href="#">
-                                    <img src="/img/socials/googleplus.png" alt="">
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </form>

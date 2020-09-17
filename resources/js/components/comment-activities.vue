@@ -1,19 +1,19 @@
-<!--<template>
-  <div class="comment-top-right">
-      <div class="tape-activity tape-activity-publication">
-          <div class="tape-activity-el comment-activity">
-              <div class="tape-activity__icon like" v-if="!hasLiked" @click="like"></div>
-              <div class="tape-activity__icon like active" v-if="hasLiked" @click="dislike"></div>
-              <span class="tape-activity-el-count">{{comment.likers_count}}</span>
-          </div>
-          <div class="tape-activity-el comment-activity">
-              <div class="tape-activity__icon dislike" v-if="!hasDisliked" @click="upVote"></div>
-              <div class="tape-activity__icon dislike active" v-if="hasDisliked" @click="downVote"></div>
-              <span class="tape-activity-el-count">{{comment.bookmarkers_count}}</span>
-          </div>
-      </div>
-  </div>
-</template>!-->
+<template>
+    <div class="comment-top-right">
+        <div class="tape-activity tape-activity-publication">
+            <div class="tape-activity-el comment-activity">
+                <div class="tape-activity__icon like" v-if="!hasLiked" @click="like"></div>
+                <div class="tape-activity__icon like active" v-if="hasLiked" @click="dislike"></div>
+                <span class="tape-activity-el-count">{{comment.likers_count}}</span>
+            </div>
+            <div class="tape-activity-el comment-activity">
+                <div class="tape-activity__icon dislike" v-if="!hasDisliked" @click="upVote"></div>
+                <div class="tape-activity__icon dislike active" v-if="hasDisliked" @click="downVote"></div>
+                <span class="tape-activity-el-count">{{comment.bookmarkers_count}}</span>
+            </div>
+        </div>
+    </div>
+</template>
 
 <script>
     export default {
@@ -32,7 +32,7 @@
         },
 
         methods: {
-            /*like() {
+            like() {
                 axios.post('/comment/like', {comment_id: this.comment.id}).then(response => {
                     this.hasLiked = true;
                     this.comment.likers_count++;
@@ -46,7 +46,7 @@
                     this.hasLiked = false;
                     this.comment.likers_count--;
                 })
-            },*/
+            },
             upVote() {
                 axios.post('/comment/upvote', {comment_id: this.comment.id}).then(response => {
                     this.hasDisliked = true;

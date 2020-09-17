@@ -62,13 +62,13 @@
                         <div class="publication-content-form-el">
                             <div style="margin-bottom:-35px">
                                 <div class="wrap-checkbox unselectable anon-check">
-                                  <!--<label>
-                                      <div class="checkbox-el">
-                                          <input type="checkbox" name="anon">
-                                          <div class="checkbox"></div>
-                                      </div>
-                                      <span>Анонимно</span>
-                                  </label>!-->
+                                    <label>
+                                        <div class="checkbox-el">
+                                            <input type="checkbox" name="anon">
+                                            <div class="checkbox"></div>
+                                        </div>
+                                        <span>Анонимно</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>

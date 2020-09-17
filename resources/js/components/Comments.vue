@@ -56,153 +56,152 @@
                                 <div class="textarea-block-media_el">
                                     <div class="load_media">
                                         <label class="unselectable">
-                                          <!--<input @change="onFileChange($event)"
-                                                 data-maxfiles="2"
-                                                 type="file" ref="files" multiple
-                                                 name="files[]" style="display:none;"/>
-                                          <img src="/img/camera.svg" alt="">
-                                          !-->
-                                      </label>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="input-el__media">
-                          <p>Осталось - <span class="count_limit">280</span></p>
-                      </div>
-                  </div>
-                  <div class="btn-green">
-                      <a @click="sendComment">Отправить</a>
-                  </div>
-              </div>
-          </form>
-      </div>
-  </div>
-  <br />
+                                            <input @change="onFileChange($event)"
+                                                   data-maxfiles="2"
+                                                   type="file" ref="files" multiple
+                                                   name="files[]" style="display:none;"/>
+                                            <img src="/img/camera.svg" alt="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-el__media">
+                            <p>Осталось - <span class="count_limit">280</span></p>
+                        </div>
+                    </div>
+                    <div class="btn-green">
+                        <a @click="sendComment">Отправить</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
 
 </div>
 </template>
 
 <script>
-  export default {
-      name: "comments",
-      props:['comments', 'post', 'user'],
-      data() {
-          return {
-              allComments:[],
-              hasMore: false,
-              files:[],
-              items: [{image:null}],
-          }
-      },
+    export default {
+        name: "comments",
+        props:['comments', 'post', 'user'],
+        data() {
+            return {
+                allComments:[],
+                hasMore: false,
+                files:[],
+                items: [{image:null}],
+            }
+        },
 
-      created() {
-          for (let comment of this.comments) {
-              this.allComments.unshift(comment);
-          }
+        created() {
+            for (let comment of this.comments) {
+                this.allComments.unshift(comment);
+            }
 
-          if (this.allComments.length > 9) {
-              this.hasMore = true;
-          }
-      },
+            if (this.allComments.length > 9) {
+                this.hasMore = true;
+            }
+        },
 
-      methods: {
-          onFileChange(e) {
-              if (this.files.length < 2) {
-                  var files = e.target.files || e.dataTransfer.files;
-                  if (!files.length)
-                      return;
-                  if (files.length > 2) {
-                      return;
-                  }
-                  if (files.length > 1) {
-                      for (let file of files) {
-                          this.files.push(file);
-                          let len = this.items.push({image: null});
-                          this.createImage(this.items[len - 1], file);
-                      }
-                  } else {
-                      this.files.push(files[0]);
-                      let len = this.items.push({image: null});
-                      this.createImage(this.items[len - 1], files[0]);
-                  }
-              }
-          },
-          createImage(item, file) {
-              var image = new Image();
-              var reader = new FileReader();
+        methods: {
+            onFileChange(e) {
+                if (this.files.length < 2) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                    if (files.length > 2) {
+                        return;
+                    }
+                    if (files.length > 1) {
+                        for (let file of files) {
+                            this.files.push(file);
+                            let len = this.items.push({image: null});
+                            this.createImage(this.items[len - 1], file);
+                        }
+                    } else {
+                        this.files.push(files[0]);
+                        let len = this.items.push({image: null});
+                        this.createImage(this.items[len - 1], files[0]);
+                    }
+                }
+            },
+            createImage(item, file) {
+                var image = new Image();
+                var reader = new FileReader();
 
-              reader.onload = (e) => {
-                  item.image = e.target.result;
-              };
-              reader.readAsDataURL(file);
-          },
+                reader.onload = (e) => {
+                    item.image = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            },
 
-          deleteMin(index) {
-              delete this.items[index];
-              this.items.splice(index, 1);
-              delete this.files[index];
-              this.files.splice(index, 1);
-          },
+            deleteMin(index) {
+                delete this.items[index];
+                this.items.splice(index, 1);
+                delete this.files[index];
+                this.files.splice(index, 1);
+            },
 
-          deleteComment(id, index) {
-              axios.post('/comment-delete/' + id).then(response => {
-                  delete this.allComments[index];
-                  this.allComments.splice(index, 1);
-                  console.log(response);
-                  console.log(12);
-              })
-          },
+            deleteComment(id, index) {
+                axios.post('/comment-delete/' + id).then(response => {
+                    delete this.allComments[index];
+                    this.allComments.splice(index, 1);
+                    console.log(response);
+                    console.log(12);
+                })
+            },
 
-          loadMore() {
-              let ids = [];
-              for (let comment of this.allComments) {
-                  ids.push(comment.id)
-              }
+            loadMore() {
+                let ids = [];
+                for (let comment of this.allComments) {
+                    ids.push(comment.id)
+                }
 
-              axios.post(window.location.pathname, {ids: ids}).then(response => {
-                  for(let single of response.data) {
-                      this.allComments.unshift(single);
-                  }
-              }).catch(error => {
-                  console.log(error);
-              })
+                axios.post(window.location.pathname, {ids: ids}).then(response => {
+                    for(let single of response.data) {
+                        this.allComments.unshift(single);
+                    }
+                }).catch(error => {
+                    console.log(error);
+                })
 
-          },
+            },
 
-          sendComment() {
-              let message = $('.detail-content-comments-add .emojionearea-editor')[0].innerHTML;
-              let formData = new FormData();
-              formData.append('message', message);
-              formData.append('commentable_type', "App\\Post");
-              formData.append('commentable_id', this.post.id);
+            sendComment() {
+                let message = $('.detail-content-comments-add .emojionearea-editor')[0].innerHTML;
+                let formData = new FormData();
+                formData.append('message', message);
+                formData.append('commentable_type', "App\\Post");
+                formData.append('commentable_id', this.post.id);
 
-              for( var i = 0; i < this.files.length; i++ ){
-                  let file = this.files[i];
-                  formData.append('files[' + i + ']', file, file.name);
-              }
+                for( var i = 0; i < this.files.length; i++ ){
+                    let file = this.files[i];
+                    formData.append('files[' + i + ']', file, file.name);
+                }
 
-              // console.log(formData)
-              axios.post('/comments', formData,
-                  {
-                      headers: {
-                          'Content-Type': 'multipart/form-data'
-                      }
-                  }).then(response => {
-                      let newCom = response.data.comment;
-                      newCom.likers_count=0;
-                      newCom.bookmarkers_count=0;
-                      newCom.images = response.data.images;
-                      this.allComments.push(newCom);
-                      $('.detail-content-comments-add .emojionearea-editor')[0].innerHTML = '';
-                      this.items = [{image: null}];
-                      this.files = [];
-                      window.location.hash = 'comment-' + newCom.id;
-                  })
-          },
-      }
+                // console.log(formData)
+                axios.post('/comments', formData,
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(response => {
+                        let newCom = response.data.comment;
+                        newCom.likers_count=0;
+                        newCom.bookmarkers_count=0;
+                        newCom.images = response.data.images;
+                        this.allComments.push(newCom);
+                        $('.detail-content-comments-add .emojionearea-editor')[0].innerHTML = '';
+                        this.items = [{image: null}];
+                        this.files = [];
+                        window.location.hash = 'comment-' + newCom.id;
+                    })
+            },
+        }
 
-  }
+    }
 </script>
 
 <style scoped>

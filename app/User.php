@@ -45,7 +45,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'age', 'email', 'password',
+        'name', 'age', 'email', 'password', 'gender', 'birth'
     ];
 
     /**
@@ -66,6 +66,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         "last_online_at" => "datetime",
     ];
+
+    protected $dates = ['birth'];
 
     public function posts()
     {
@@ -136,5 +138,10 @@ class User extends Authenticatable
             if ($amount <= self::$$staticAmount)
                 return self::$$staticStatus;
         }
+    }
+
+    public function getAgeAttribute()
+    {
+        return Carbon::now()->diffInYears($this->birth);
     }
 }
