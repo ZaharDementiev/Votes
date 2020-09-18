@@ -4,7 +4,7 @@
     <section class="sec-profile">
         <div class="wrap-profile">
 
-                <div class="profile_user">
+                <div class="profile_user userPage">
                     <div class="profile_user_img" style="background-image: url(/storage/images/avatars/{{ $user->avatar}});"></div>
                     <div class="profile_user_name">
                         <p>{{$user->name}} {{$user->age}}</p>
@@ -90,6 +90,7 @@
                     </div>
                 @endif
                     @if(auth()->user()->gender == \App\User::GENDER_MALE && $user->gender == \App\User::GENDER_FEMALE)
+
                     <div class="settings-content-el settings-content-el_small">
                         <div class="settings-content-el-top unselectable">
                             <div class="settings-content-el-left">
@@ -119,7 +120,8 @@
                         </div>
                     </div>
                     @endif
-                    <div class="profile-descrp userPage__descrp">
+                    @if(request()->is("*user/$user->name"))
+                        <div class="profile-descrp userPage__descrp">
                         <div class="profile-descrp__block">
                             <div class="profile-descrp__title title title_small">О себе</div>
                             <p class="profile-descrp__text">Я люблю вирт общение, пишите познакомимся, подружимся и пообщаемся, а если не хотите, то ничего не пишите.</p>
@@ -163,6 +165,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
             </div>
 
             <div class="profile_tabs">

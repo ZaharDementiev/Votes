@@ -17,7 +17,7 @@ class FeedbackTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->text('text');
-            $table->bigInteger('payment_id');
+            //$table->bigInteger('payment_id');
             $table->smallInteger('points');
             $table->boolean('positive');
             $table->bigInteger('to_id');

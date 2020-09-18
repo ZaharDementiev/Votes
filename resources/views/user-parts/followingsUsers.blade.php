@@ -4,12 +4,12 @@
     <div class="wrap-profile-content">
         <div class="wrap-topic">
             <h2>Подписки</h2>
-            <div class="tape-tabs">
-                <ul>
-                    <li><a href="{{route('profile-follows', $user->name)}}">Теги</a></li>
-                    <li class="active"><a href="#">Пользователи</a></li>
-                </ul>
-            </div>
+{{--            <div class="tape-tabs">--}}
+{{--                <ul>--}}
+{{--                    <li><a href="{{route('profile-follows', $user->name)}}">Теги</a></li>--}}
+{{--                    <li class="active"><a href="#">Пользователи</a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
             <div class="wrap-followers">
                 @foreach($follows as $follower)
                     <div class="followers-el">

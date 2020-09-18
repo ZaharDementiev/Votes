@@ -59,19 +59,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="publication-content-form-el">
-                            <div style="margin-bottom:-35px">
-                                <div class="wrap-checkbox unselectable anon-check">
-                                    <label>
-                                        <div class="checkbox-el">
-                                            <input type="checkbox" name="anon">
-                                            <div class="checkbox"></div>
-                                        </div>
-                                        <span>Анонимно</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="publication-content-form-el">-->
+<!--                            <div style="margin-bottom:-35px">-->
+<!--                                <div class="wrap-checkbox unselectable anon-check">-->
+<!--                                    <label>-->
+<!--                                        <div class="checkbox-el">-->
+<!--                                            <input type="checkbox" name="anon">-->
+<!--                                            <div class="checkbox"></div>-->
+<!--                                        </div>-->
+<!--                                        <span>Анонимно</span>-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <div class="publication-content-form-bottom" style="margin-bottom: 20px">
                             <div class="publication-content-form-btn btn-green">
                                 <button @click.prevent="sendForm" v-show="publish" type="submit">Опубликовать</button>
