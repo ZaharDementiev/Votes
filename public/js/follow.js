@@ -10,7 +10,6 @@ function ajaxAction(obj, type) {
             obj.attr('class', data);
             let child = $(obj).children()[0];
             let text = $(child).children()[0];
-
             let newText = data == 'follow' ? 'Подписаться' : 'Отписаться';
             let newClass = data == 'follow' ? 'btn_subscribe' : 'btn_unscribe';
             if (type == 'users')

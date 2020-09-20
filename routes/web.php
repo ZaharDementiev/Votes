@@ -155,9 +155,9 @@ Route::group(['prefix' => 'user'], function () {
 
 Route::get('{name}', 'UserController@posts')->name('profile')->middleware('auth');
 Route::post('{name}', 'UserController@posts')->name('profile')->middleware('auth');
-Route::get('{name}/follows', 'UserController@follows')->name('profile-follows')->middleware('auth');
-Route::post('{name}/follows', 'UserController@follows')->name('profile-follows')->middleware('auth');
-Route::get('{name}/follows/users', 'UserController@followsUsers')->name('profile-follows-users')->middleware('auth');
+Route::get('{name}/follows', 'UserController@followsUsers')->name('profile-follows')->middleware('auth');
+//Route::get('{name}/follows', 'UserController@follows')->name('profile-follows')->middleware('auth');
+//Route::post('{name}/follows', 'UserController@follows')->name('profile-follows')->middleware('auth');
 Route::get('{name}/followers', 'UserController@followers')->name('profile-followers')->middleware('auth');
 Route::post('{name}/followers', 'UserController@followers')->name('profile-followers')->middleware('auth');
 //--Zahar start--//
