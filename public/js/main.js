@@ -122,7 +122,6 @@ $('.select_jq').select2({
 function closePopUp(wrap) {
   wrap.fadeOut(400);
   $('body').removeClass('noscroll');
-  return false;
 }
 
 function openPopUp(wrap) {
