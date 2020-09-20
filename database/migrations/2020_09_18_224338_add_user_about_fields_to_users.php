@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAgeToUserTable extends Migration
+class AddUserAboutFieldsToUsers extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,12 @@ class AddAgeToUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //$table->integer('age')->unsigned();
+            $table->text('about')->nullable();
+            $table->string('services')->nullable();
+            $table->string('whatsapp')->nullable();
+            $table->string('telegram')->nullable();
+            $table->string('viber')->nullable();
+            $table->string('skype')->nullable();
         });
     }
 

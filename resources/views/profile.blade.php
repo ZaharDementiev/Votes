@@ -124,7 +124,7 @@
                         <div class="profile-descrp userPage__descrp">
                         <div class="profile-descrp__block">
                             <div class="profile-descrp__title title title_small">О себе</div>
-                            <p class="profile-descrp__text">Я люблю вирт общение, пишите познакомимся, подружимся и пообщаемся, а если не хотите, то ничего не пишите.</p>
+                            <p class="profile-descrp__text">{{$user->about}}</p>
                         </div>
                         <div class="profile-descrp__block">
                             <div class="profile-descrp__title title title_small">Вирт общение:</div>
@@ -142,26 +142,34 @@
                         <div class="profile-descrp__block">
                             <div class="profile-descrp__title title title_small">Контакты:</div>
                             <div class="block-contacts profile-descrp__contacts">
-                                <div class="block-contacts__el contacts-el">
-                                    <img src="/img/icons/whatsapp.svg" alt="" class="contacts-el__icon">
-                                    <div class="contacts-el__title">Whatsapp: </div>
-                                    <div class="contacts-el__text">+79654556677</div>
-                                </div>
-                                <div class="block-contacts__el contacts-el">
-                                    <img src="/img/icons/viber.svg" alt="" class="contacts-el__icon">
-                                    <div class="contacts-el__title">Viber: </div>
-                                    <div class="contacts-el__text">+79654556677</div>
-                                </div>
-                                <div class="block-contacts__el contacts-el">
-                                    <img src="/img/icons/tel.svg" alt="" class="contacts-el__icon">
-                                    <div class="contacts-el__title">Telegramm: </div>
-                                    <div class="contacts-el__text">@login123</div>
-                                </div>
-                                <div class="block-contacts__el contacts-el">
-                                    <img src="/img/icons/skype.svg" alt="" class="contacts-el__icon">
-                                    <div class="contacts-el__title">Skype: </div>
-                                    <div class="contacts-el__text">login345</div>
-                                </div>
+                                @if($user->whatsapp != null)
+                                    <div class="block-contacts__el contacts-el">
+                                        <img src="/img/icons/whatsapp.svg" alt="" class="contacts-el__icon">
+                                        <div class="contacts-el__title">Whatsapp: </div>
+                                        <div class="contacts-el__text">{{$user->whatsapp}}</div>
+                                    </div>
+                                @endif
+                                @if($user->viber != null)
+                                    <div class="block-contacts__el contacts-el">
+                                        <img src="/img/icons/viber.svg" alt="" class="contacts-el__icon">
+                                        <div class="contacts-el__title">Viber: </div>
+                                        <div class="contacts-el__text">{{$user->viber}}</div>
+                                    </div>
+                                @endif
+                                @if($user->telegram != null)
+                                    <div class="block-contacts__el contacts-el">
+                                        <img src="/img/icons/tel.svg" alt="" class="contacts-el__icon">
+                                        <div class="contacts-el__title">Telegramm: </div>
+                                        <div class="contacts-el__text">{{$user->telegram}}</div>
+                                    </div>
+                                @endif
+                                @if($user->skype != null)
+                                    <div class="block-contacts__el contacts-el">
+                                        <img src="/img/icons/skype.svg" alt="" class="contacts-el__icon">
+                                        <div class="contacts-el__title">Skype: </div>
+                                        <div class="contacts-el__text">{{$user->skype}}</div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

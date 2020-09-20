@@ -3,14 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="97472df5-5da5-4c9a-a20d-8e28e3fe366c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_08_133605_feedback_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_08_133605_feedback_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_09_09_164346_transaction_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_09_09_164346_transaction_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Comments.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Comments.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/TextPublication.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/TextPublication.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Tag.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Tag.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_13_082239_add_age_to_user_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_13_082239_add_age_to_user_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/profile.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/profile.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/user-parts/followingsUsers.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/user-parts/followingsUsers.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -169,7 +165,9 @@
       <workItem from="1600367941662" duration="1123000" />
       <workItem from="1600369181078" duration="6000" />
       <workItem from="1600369210598" duration="67000" />
-      <workItem from="1600369406843" duration="9373000" />
+      <workItem from="1600369406843" duration="12553000" />
+      <workItem from="1600505911335" duration="693000" />
+      <workItem from="1600598531047" duration="1931000" />
     </task>
     <servers />
   </component>
