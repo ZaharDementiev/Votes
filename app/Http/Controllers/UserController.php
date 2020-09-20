@@ -274,15 +274,13 @@ class UserController extends Controller
 
     public function transactions($name)
     {
-        if (auth()->user()->gender == User::GENDER_MALE)
-        {
+        if (auth()->user()->gender == User::GENDER_MALE) {
             $user = User::with('transactions')->where('name', $name)->first();
             return view('supports', [
                 'user' => $user
             ]);
         }
-        else
-        {
+        else {
             return redirect()->back();
         }
     }

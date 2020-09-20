@@ -1,7 +1,21 @@
 @extends('layouts/app')
 @section('content')
     @if($filter == 'live')
+        <div class="tape-tabs tape-tabs_small">
+            <ul>
+                <li class="active"><a href="/">Live</a></li>
+                <li><a href="{{route('popular')}}">Лучшее</a></li>
+                <li><a href="{{route('discussed')}}">Обсуждаемое</a></li>
+            </ul>
+        </div>
     @elseif($filter == 'popular')
+        <div class="tape-tabs tape-tabs_small">
+            <ul>
+                <li><a href="/">Live</a></li>
+                <li class="active"><a href="{{route('popular')}}">Лучшее</a></li>
+                <li><a href="{{route('discussed')}}">Обсуждаемое</a></li>
+            </ul>
+        </div>
         <div class="tape-tabs">
             <ul>
                 <li class="{{ $time == 'day' ? 'active' : '' }}"><a href="{{ route('popular', [ 'day']) }}">24 часа</a></li>
@@ -11,6 +25,13 @@
             </ul>
         </div>
     @elseif($filter == 'discussed')
+        <div class="tape-tabs tape-tabs_small">
+            <ul>
+                <li><a href="/">Live</a></li>
+                <li><a href="{{route('popular')}}">Лучшее</a></li>
+                <li class="active"><a href="{{route('discussed')}}">Обсуждаемое</a></li>
+            </ul>
+        </div>
         <div class="tape-tabs">
             <ul>
                 <li class="{{ $time == 'day' ? 'active' : '' }}"><a href="{{ route('discussed', [ 'day']) }}">24 часа</a></li>

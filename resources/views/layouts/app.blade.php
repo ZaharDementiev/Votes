@@ -132,7 +132,8 @@
                 <li class="{{ (request()->is('*popular*')) ? 'active' : '' }}"><a href="{{route('popular')}}">
                         <div class="icon_li best"></div>
                         <span>Лучшее</span>
-                    </a></li>
+                    </a>
+                </li>
                 <li class="{{ (request()->is('*discussed*')) ? 'active' : '' }}">
                     <a href="{{route('discussed')}}">
                         <div class="icon_li discuss"></div>
@@ -245,39 +246,80 @@
 
                             <li @if(Route::current()) class="{{ Route::current()->getName() == 'live' ? 'active' : '' }} mobShow live" @endif><a href="{{ route('live') }}">
                                     <div class="icon_li main"></div>
-                                    <span>Лента live (Главная)</span>
+                                    <span>Флирт</span>
                                 </a></li>
                             @auth
-                            <li class="{{ (request()->is('*my*')) ? 'active' : '' }} mobShow tape">
-                                <a href="{{ route('my-tags') }}">
-                                    <div class="icon_li tape">
-                                        @auth
-                                            <live-notifications :user="{{ Auth::user() }}"></live-notifications>
-                                        @endauth
-                                    </div>
-                                    <span>Моя лента</span>
-                                </a>
-                            </li>
+                                <li class="{{ (request()->is('*virt*')) ? 'active' : '' }} mobShow tape">
+                                    <a href="{{ route('virt') }}">
+                                        <div class="icon_li tape">
+                                            @auth
+                                                <live-notifications :user="{{ Auth::user() }}"></live-notifications>
+                                            @endauth
+                                        </div>
+                                        <span>Вирт</span>
+                                    </a>
+                                </li>
                             @endauth
                             @guest
-                            <li class="{{ (request()->is('*my*')) ? 'active' : '' }} mobShow tape">
-                                <a href="{{ route('my-tags') }}" onclick="preventDefault() " class="signIn_open">
-                                    <div class="icon_li tape">
-                                    </div>
-                                    <span>Моя лента</span>
-                                </a>
-                            </li>
+                                <li class="{{ (request()->is('*virt*')) ? 'active' : ''}} mobShow tape">
+                                    <a href="{{ route('virt') }}" onclick="preventDefault() " class="signIn_open">
+                                        <div class="icon_li tape">
+                                        </div>
+                                        <span>Вирт</span>
+                                    </a>
+                                </li>
                             @endguest
-                            <li class="{{ (request()->is('*popular*')) ? 'active' : '' }}"><a href="{{route('popular')}}">
-                                    <div class="icon_li best"></div>
-                                    <span>Лучшее</span>
-                                </a></li>
-                            <li class="{{ (request()->is('*discussed*')) ? 'active' : '' }}">
-                                <a href="{{route('discussed')}}">
-                                    <div class="icon_li discuss"></div>
-                                    <span>Обсуждаемое</span>
-                                </a>
-                            </li>
+{{--                            @auth--}}
+{{--                                <li class="{{ (request()->is('*my*')) ? 'active' : '' }} mobShow tape">--}}
+{{--                                    <a href="{{ route('my-tags') }}">--}}
+{{--                                        <div class="icon_li tape">--}}
+{{--                                            @auth--}}
+{{--                                                <live-notifications :user="{{ Auth::user() }}"></live-notifications>--}}
+{{--                                            @endauth--}}
+{{--                                        </div>--}}
+{{--                                        <span>Моя лента</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            @endauth--}}
+{{--                            @guest--}}
+{{--                                <li class="{{ (request()->is('*my*')) ? 'active' : '' }} mobShow tape">--}}
+{{--                                    <a href="{{ route('my-tags') }}" onclick="preventDefault() " class="signIn_open">--}}
+{{--                                        <div class="icon_li tape">--}}
+{{--                                        </div>--}}
+{{--                                        <span>Моя лента</span>--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            @endguest--}}
+{{--                            <li class="{{ (request()->is('*popular*')) ? 'active' : '' }}"><a href="{{route('popular')}}">--}}
+{{--                                    <div class="icon_li best"></div>--}}
+{{--                                    <span>Лучшее</span>--}}
+{{--                                </a></li>--}}
+{{--                            <li class="{{ (request()->is('*discussed*')) ? 'active' : '' }}">--}}
+{{--                                <a href="{{route('discussed')}}">--}}
+{{--                                    <div class="icon_li discuss"></div>--}}
+{{--                                    <span>Обсуждаемое</span>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+                                @auth
+                                    <li class="mobShow messages {{ (request()->is('*chat*')) || (request()->is('*dialogs*')) ? 'active' : '' }}"><a href="{{ route('dialogs') }}">
+                                            <div class="icon_li messages">
+
+                                                <messages-count :user="{{Auth::user()}}"></messages-count>
+
+                                            </div>
+                                            <span>Сообщения</span>
+                                        </a></li>
+                                @endauth
+                                @guest
+                                    <li class="mobShow messages
+                                    {{ (request()->is('*chat*')) || (request()->is('*dialogs*')) ? 'active' : '' }}">
+                                        <a href="{{ route('dialogs') }}" onclick="preventDefault()" class="signIn_open">
+                                            <div class="icon_li messages">
+                                            </div>
+                                            <span>Сообщения</span>
+                                        </a>
+                                    </li>
+                                @endguest
                             @auth
                             <li class=" {{ (request()->is('*notifications*')) ? 'active' : '' }} mobShow notification">
                                 <a href="{{ route('notifications') }}">
@@ -298,25 +340,13 @@
                                 </li>
                             @endguest
                             @auth
-                            <li class="mobShow messages {{ (request()->is('*chat*')) || (request()->is('*dialogs*')) ? 'active' : '' }}"><a href="{{ route('dialogs') }}">
-                                    <div class="icon_li messages">
-
-                                            <messages-count :user="{{Auth::user()}}"></messages-count>
-
-                                    </div>
-                                    <span>Сообщения</span>
-                                </a></li>
-                            @endauth
-                            @guest
-                                <li class="mobShow messages
-                                    {{ (request()->is('*chat*')) || (request()->is('*dialogs*')) ? 'active' : '' }}">
-                                    <a href="{{ route('dialogs') }}" onclick="preventDefault()" class="signIn_open">
-                                        <div class="icon_li messages">
-                                        </div>
-                                        <span>Сообщения</span>
+{{--                                <li class="{{ (request()->is('*popular*')) ? 'active' : '' }}"><a href="{{route('popular')}}">--}}
+                                <li><a href="#">
+                                        <div class="icon_li best"></div>
+                                        <span>Мои подписки</span>
                                     </a>
                                 </li>
-                            @endguest
+                            @endauth
                             @auth
                                 <li class="{{ (request()->is('*favorites*')) ? 'active' : '' }}">
                                     <a href="{{ route('favorites') }}">

@@ -182,3 +182,4 @@ Route::post('feedbacks/submit/{transaction}', 'FeedbackController@store')->name(
 Route::get('/transaction', 'TransactionController@transaction')->name('transaction')->middleware('auth');
 Route::post('transaction/submit', 'TransactionController@make')->name('transaction-submit')->middleware('auth');
 
+Route::get('virt', 'HomeController@virts')->name('virt')->middleware('auth');

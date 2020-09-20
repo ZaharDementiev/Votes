@@ -7,6 +7,7 @@ use App\Events\SearchEvent;
 use App\Notifications\NewPost;
 use App\Post;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -151,6 +152,14 @@ class HomeController extends Controller
 //        event(new SearchEvent($tags, $posts));
 
         return [$tags, $posts];
+    }
+
+    public function virts()
+    {
+        $women = User::where('gender', User::GENDER_FEMALE)->get();
+        return view('virt', [
+            'women' => $women
+        ]);
     }
 
 }
