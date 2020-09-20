@@ -159,7 +159,7 @@
                                 @if($user->telegram != null)
                                     <div class="block-contacts__el contacts-el">
                                         <img src="/img/icons/tel.svg" alt="" class="contacts-el__icon">
-                                        <div class="contacts-el__title">Telegramm: </div>
+                                        <div class="contacts-el__title">Telegram: </div>
                                         <div class="contacts-el__text">{{$user->telegram}}</div>
                                     </div>
                                 @endif
