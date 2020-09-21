@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="votes" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="votes">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/admin/web/flirtvirt.com/public_html" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/home/admin/web/flirtvirt.com/public_html/storage" />
+            <excludedPath path="/home/admin/web/flirtvirt.com/public_html/.env" />
+            <excludedPath path="/home/admin/web/flirtvirt.com/public_html/node_modules" />
+            <excludedPath path="/home/admin/web/flirtvirt.com/public_html/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/vendor" />
+            <excludedPath local="true" path="$PROJECT_DIR$/node_modules" />
+            <excludedPath local="true" path="$PROJECT_DIR$/.env" />
+            <excludedPath local="true" path="$PROJECT_DIR$/storage" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

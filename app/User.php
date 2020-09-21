@@ -21,8 +21,8 @@ class User extends Authenticatable
     use Voter;
     use CanFollow, CanLike, CanFavorite, CanBeFollowed, Commenter, CanBookmark;
 
-    public const GENDER_MALE = 1;
-    public const GENDER_FEMALE = 0;
+    public const GENDER_MALE = 0;
+    public const GENDER_FEMALE = 1;
 
     public static $BRONZE_MIN_AMOUNT = 1;
     public static $SILVER_MIN_AMOUNT = 1001;
@@ -127,17 +127,17 @@ class User extends Authenticatable
     }
 
     // Суммирует эмаунт ($user->status)
-    public function getStatusAttribute()
-    {
-        $amount = $this->transactions()->sum('amount');
-        for ($i = 1; $i < count(self::STATUSES); $i++)
-        {
-            $staticAmount = sprintf('%s_MIN_AMOUNT', self::STATUSES[$i]);
-            $staticStatus = sprintf('%s_TEXT_STATUS', self::STATUSES[$i - 1]);
-            if ($amount <= self::$$staticAmount)
-                return self::$$staticStatus;
-        }
-    }
+//    public function getStatusAttribute()
+//    {
+//        $amount = $this->transactions()->sum('amount');
+//        for ($i = 1; $i < count(self::STATUSES); $i++)
+//        {
+//            $staticAmount = sprintf('%s_MIN_AMOUNT', self::STATUSES[$i]);
+//            $staticStatus = sprintf('%s_TEXT_STATUS', self::STATUSES[$i - 1]);
+//            if ($amount <= self::$$staticAmount)
+//                return self::$$staticStatus;
+//        }
+//    }
 
     public function getAgeAttribute()
     {

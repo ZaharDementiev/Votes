@@ -52,7 +52,7 @@ Route::get('sitemap.xml', 'HomeController@sitemap');
 Route::get('options/{post_id}', 'PostController@getOptions');
 
 Route::get('/search', 'HomeController@search');
-Route::redirect('/home', '/my/tags');
+Route::redirect('/home', '/');
 
 Route::get('/mark-read', function () {
     auth()->user()->notifications()

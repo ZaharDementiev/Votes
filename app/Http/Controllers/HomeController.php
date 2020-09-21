@@ -156,7 +156,10 @@ class HomeController extends Controller
 
     public function virts()
     {
-        $women = User::where('gender', User::GENDER_FEMALE)->get();
+        if (auth()->check())
+            $women = User::where('gender', User::GENDER_FEMALE)->where('id', '!=', auth()->id())->get();
+        else
+            $women = User::where('gender', User::GENDER_FEMALE)->get();
         return view('virt', [
             'women' => $women
         ]);

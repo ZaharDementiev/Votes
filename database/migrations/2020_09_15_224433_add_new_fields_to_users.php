@@ -17,7 +17,7 @@ class AddNewFieldsToUsers extends Migration
             $table->double('balance')->unsigned()->default(0);
             $table->smallInteger('gender')->nullable();
             $table->integer('rating')->default(0);
-            $table->date('birth');
+            $table->date('birth')->nullable();
         });
     }
 
