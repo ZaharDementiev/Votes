@@ -21,8 +21,8 @@ class User extends Authenticatable
     use Voter;
     use CanFollow, CanLike, CanFavorite, CanBeFollowed, Commenter, CanBookmark;
 
-    public const GENDER_MALE = 0;
-    public const GENDER_FEMALE = 1;
+    public const GENDER_MALE = 1;
+    public const GENDER_FEMALE = 0;
 
     public static $BRONZE_MIN_AMOUNT = 1;
     public static $SILVER_MIN_AMOUNT = 1001;

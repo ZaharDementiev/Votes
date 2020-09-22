@@ -6,8 +6,11 @@
 
                 <div class="profile_user userPage">
                     <div class="profile_user_img" style="background-image: url(/storage/images/avatars/{{ $user->avatar}});"></div>
-                    <div class="profile_user_name">
+                    <div class="profile_user_name block-vip-name">
                         <p>{{$user->name}} {{$user->age}}</p>
+                        @if ($user->vip)
+                            <div class="block-vip-name__vip vip-icon"></div>
+                        @endif
                     </div>
                     @if(auth()->user()->gender == \App\User::GENDER_MALE && $user->gender == \App\User::GENDER_FEMALE)
                         <div class="descrp-block descrp-block_center">
@@ -89,43 +92,17 @@
                         <a href="{{route('chat', $user->name)}}">Написать сообщение</a>
                     </div>
                 @endif
-                    @if(auth()->user()->gender == \App\User::GENDER_MALE && $user->gender == \App\User::GENDER_FEMALE)
-
-                    <div class="settings-content-el settings-content-el_small">
-                        <div class="settings-content-el-top unselectable">
-                            <div class="settings-content-el-left">
-                                <div class="settings-content-el-left-icon">
-                                    <img src="/img/icons/money.svg" alt="">
-                                </div>
-                                <span>Поддержать и отправить FVC</span>
-                            </div>
-                            <div class="settings-content-el-right">
-                                <div class="arr_settigns">
-                                    <img src="/img/arr_blue.svg" alt="">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="settings-content-el-body">
-                            <form class="form-settigns-el">
-                                <div class="inputs">
-                                    <div class="input-el">
-                                        <h4>Введите сумму</h4>
-                                        <input type="text" class="inp-default">
-                                    </div>
-                                </div>
-                                <div class="btn-green">
-                                    <button type="submit">Далее</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    @endif
                     @if(request()->is("*user/$user->name"))
                         <div class="profile-descrp userPage__descrp">
-                        <div class="profile-descrp__block">
-                            <div class="profile-descrp__title title title_small">О себе</div>
-                            <p class="profile-descrp__text">{{$user->about}}</p>
-                        </div>
+                            <div class="profile-descrp__block">
+                                <div class="profile-descrp__title title title_small">О себе</div>
+                                <p class="profile-descrp__text">{{$user->about}}</p>
+                            </div>
+                            @if($user->vip)
+                                <div class="profile-descrp__block">
+                                    <a href="{{$user->link}}" class="link-big">{{$user->link}}</a>
+                                </div>
+                            @endif
                         <div class="profile-descrp__block">
                             <div class="profile-descrp__title title title_small">Вирт общение:</div>
                             <ul class="profile-descrp-ul profile-descrp__descrp">

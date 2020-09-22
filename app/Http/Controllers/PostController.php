@@ -38,7 +38,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['live', 'popular', 'discussed']);
         Carbon::setLocale('ru');
         define('LIMIT_OF_POSTS', 10);
     }
@@ -67,6 +67,7 @@ class PostController extends Controller
             ->whereNotIn('id', $ids)
             ->where('created_at', '>', Carbon::now()->$sub())
             ->orderBy($order_by, 'DESC')
+            ->orderBy('created_at', 'DESC')
             ->limit(LIMIT_OF_POSTS)
             ->get();
 

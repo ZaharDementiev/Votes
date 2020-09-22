@@ -8,10 +8,12 @@ use App\Notifications\NewPost;
 use App\Post;
 use App\Tag;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use PhpParser\Node\Expr\Array_;
 
 class HomeController extends Controller
 {
@@ -165,4 +167,15 @@ class HomeController extends Controller
         ]);
     }
 
+    public function sort(Request $request)
+    {
+        $women = null;
+        $range = explode(';', $request->input('my_range'));
+
+        if ($request->input('online') == 'on')
+            $women = User::where('last_online_at', '>', Carbon::now()->subMinutes(5)->toDateTimeString())
+                ->whereBetween()->get();
+
+        dd($women);
+    }
 }

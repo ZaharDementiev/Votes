@@ -244,7 +244,7 @@
 
                             <li @if(Route::current()) class="{{ Route::current()->getName() == 'live' ? 'active' : '' }} mobShow live" @endif><a href="{{ route('live') }}">
                                     <div class="icon_li main"></div>
-                                    <span>Лента live (Главная)</span>
+                                    <span>Флирт</span>
                                 </a></li>
                             @auth
                             <li class="{{ (request()->is('*my*')) ? 'active' : '' }} mobShow tape">

@@ -2773,12 +2773,6 @@ window.onload = function () {
             wrap.find('.settings-content-el-body').slideUp(250);
         }
 
-        $('form.form-settigns-el').on('submit', function(e) {
-            e.preventDefault();
-            closeSettignsEl($(this).closest('.settings-content-el'));
-            return false;
-        });
-
         if ( $(window).width() > 600 ) {
             // var el = $('.textarea-block__textarea').emojioneArea({
             //  search: false,

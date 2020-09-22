@@ -135,15 +135,10 @@
     <div class="menu-window-mobile-maian">
         <div class="container">
             <ul class="menu-pages">
-                <li class="{{ (request()->is('*popular*')) ? 'active' : '' }}"><a href="{{route('popular')}}">
+                <li class="{{(request()->is('*my/tags')) ? 'active' : ''}}">
+                    <a href="{{route('my-tags')}}">
                         <div class="icon_li best"></div>
-                        <span>Лучшее</span>
-                    </a>
-                </li>
-                <li class="{{ (request()->is('*discussed*')) ? 'active' : '' }}">
-                    <a href="{{route('discussed')}}">
-                        <div class="icon_li discuss"></div>
-                        <span>Обсуждаемое</span>
+                        <span>Мои подписки</span>
                     </a>
                 </li>
                 <li class="{{ (request()->is('*favorites*')) ? 'active' : '' }}">
@@ -602,7 +597,7 @@
                                     <span class="radio-el__text">Женщина:</span>
                                     <span class="radio-el__inp radio" for="sex1">
                             <input type="radio" name="sex" class="radio__inp" id="sex1"
-                                   value="{{ \App\User::GENDER_MALE }}">
+                                   value="{{ \App\User::GENDER_FEMALE }}">
                             <span class="radio__dec">
                               <span class="radio__dec-circle"></span>
                             </span>
@@ -613,7 +608,7 @@
                                     <span class="radio-el__text">Мужчина:</span>
                                     <span class="radio-el__inp radio">
                             <input type="radio" name="sex" class="radio__inp" id="sex2"
-                                   value="{{ \App\User::GENDER_FEMALE }}">
+                                   value="{{ \App\User::GENDER_MALE }}">
                             <span class="radio__dec">
                               <span class="radio__dec-circle"></span>
                             </span>
@@ -940,7 +935,7 @@
                     $('.wrapper-load').fadeOut(300);
                 },
                 success: function (data) {
-                    ym(55702444, 'reachGoal', 'register');
+                    //ym(55702444, 'reachGoal', 'register');
                     setTimeout(function () {
                         window.location.reload(true)
                     }, 500);

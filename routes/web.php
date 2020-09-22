@@ -183,3 +183,4 @@ Route::get('/transaction', 'TransactionController@transaction')->name('transacti
 Route::post('transaction/submit', 'TransactionController@make')->name('transaction-submit')->middleware('auth');
 
 Route::get('virt', 'HomeController@virts')->name('virt')->middleware('auth');
+Route::post('virt/search', 'HomeController@sort')->name('virt-search');
