@@ -70,8 +70,6 @@ class TagController extends Controller
         $ids = $request->post('ids') ? $request->post('ids') : [];
         $tag = Tag::where('slug', $slug)->first();
 
-        dd($request);
-
         SEO::setTitle($tag->seoTitle);
         SEO::setDescription($tag->seoDesc);
         SEO::opengraph()->setTitle($tag->seoTitle);

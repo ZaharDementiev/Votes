@@ -9,11 +9,13 @@ use App\Post;
 use App\Tag;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use PhpParser\Node\Expr\Array_;
+use function foo\func;
 
 class HomeController extends Controller
 {
@@ -21,7 +23,7 @@ class HomeController extends Controller
     public function sitemap()
     {
         $posts = Post::where('approved', true)
-        ->get();
+            ->get();
         $tags = Tag::get();
 
         return view('sitemap')->with(compact('posts', 'tags'));
@@ -159,9 +161,12 @@ class HomeController extends Controller
     public function virts()
     {
         if (auth()->check())
-            $women = User::where('gender', User::GENDER_FEMALE)->where('id', '!=', auth()->id())->get();
+            $women = User::where('gender', User::GENDER_FEMALE)->where('id', '!=', auth()->id())
+                ->orderBy('vip', 'DESC')
+                ->orderBy('rating', 'DESC')->get();
         else
-            $women = User::where('gender', User::GENDER_FEMALE)->get();
+            $women = User::where('gender', User::GENDER_FEMALE)->orderBy('vip', 'DESC')
+                ->orderBy('rating', 'DESC')->get();
         return view('virt', [
             'women' => $women
         ]);
@@ -169,13 +174,36 @@ class HomeController extends Controller
 
     public function sort(Request $request)
     {
+        $tags = $request->tags ?? [];
         $women = null;
         $range = explode(';', $request->input('my_range'));
 
-        if ($request->input('online') == 'on')
-            $women = User::where('last_online_at', '>', Carbon::now()->subMinutes(5)->toDateTimeString())
-                ->whereBetween()->get();
+        if ($request->input('online')) {
+            $sql = User::where('last_online_at', '>', Carbon::now()->subMinutes(5))
+                ->where('gender', User::GENDER_FEMALE)
+                ->whereBetween('birth', [
+                    Carbon::now()->subYears($range[1]),
+                    Carbon::now()->subYears($range[0])
+                ]);
+        } else {
+            $sql = User::where('gender', User::GENDER_FEMALE)->whereBetween('birth', [
+                Carbon::now()->subYears($range[1]),
+                Carbon::now()->subYears($range[0])
+            ]);
+        }
 
-        dd($women);
+        if (count($tags) > 0) {
+            $sql = $sql->whereHas('tags', function (Builder $query) use ($tags) {
+                $query->whereIn('tags.id', $tags);
+            });
+        }
+//        ->
+//        whereDoesntHave('tags', function (Builder $query) use ($tags) {
+//            $query->whereNotIn('tags.id', $tags);
+//        })
+        
+        $women = $sql->orderBy('vip', 'DESC')->orderBy('rating', 'DESC')->get();
+
+        return response()->json($women, 200);
     }
 }

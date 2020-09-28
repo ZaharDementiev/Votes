@@ -284,4 +284,50 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
+    public function saveAbout(Request $request)
+    {
+        $user = auth()->user();
+        $user->about = $request->input('about_user');
+        $user->save();
+        return response()->json(['success' => true], 200);
+    }
+
+    public function saveLink(Request $request)
+    {
+        $user = auth()->user();
+        $user->link = $request->input('link');
+        $user->save();
+        return response()->json(['success' => true], 200);
+    }
+
+    public function saveContacts(Request $request)
+    {
+        $user = auth()->user();
+        if ($request->input('whatsapp'))
+            $user->whatsapp = $request->input('whatsapp');
+        if ($request->input('telegram'))
+            $user->telegram = $request->input('telegram');
+        if ($request->input('viber'))
+            $user->viber = $request->input('viber');
+        if ($request->input('skype'))
+            $user->skype = $request->input('skype');
+        $user->save();
+        return response()->json(['success' => true], 200);
+    }
+
+    public function saveServices(Request $request)
+    {
+        $user = auth()->user();
+        $user->services = $request->input('service');
+        $user->save();
+        return response()->json(['success' => true], 200);
+    }
+
+    public function saveTags(Request $request)
+    {
+        $user = auth()->user();
+        $user->tags()->attach($request->input('tags'));
+        return response()->json(['success' => true], 200);
+    }
 }

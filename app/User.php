@@ -39,6 +39,8 @@ class User extends Authenticatable
 
     public const STATUSES = ['ENTRY', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'BRILLIANT'];
 
+    protected $appends = ['online', 'age'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -147,5 +149,9 @@ class User extends Authenticatable
     public function tags()
     {
         return $this->belongsToMany(Tag::class, 'tag_user');
+    }
+
+    public function getOnlineAttribute() {
+        return Carbon::now()->diffInMinutes($this->last_online_at) <= 5;
     }
 }

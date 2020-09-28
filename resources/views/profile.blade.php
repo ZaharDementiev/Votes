@@ -92,8 +92,11 @@
                         <a href="{{route('chat', $user->name)}}">Написать сообщение</a>
                     </div>
                 @endif
-                    @if(request()->is("*user/$user->name"))
+                    @if(request()->is("*user/$user->name") && $user->gender == \App\User::GENDER_FEMALE)
                         <div class="profile-descrp userPage__descrp">
+                            @if ($user->name == auth()->user()->name && auth()->user()->gender == \App\User::GENDER_FEMALE)
+                                <div class="profile-descrp__icon"></div>
+                            @endif
                             <div class="profile-descrp__block">
                                 <div class="profile-descrp__title title title_small">О себе</div>
                                 <p class="profile-descrp__text">{{$user->about}}</p>
@@ -106,14 +109,12 @@
                         <div class="profile-descrp__block">
                             <div class="profile-descrp__title title title_small">Вирт общение:</div>
                             <ul class="profile-descrp-ul profile-descrp__descrp">
-                                <li class="profile-descrp__text"><span>-</span>переписка</li>
-                                <li class="profile-descrp__text"><span>-</span>фото архив</li>
-                                <li class="profile-descrp__text"><span>-</span>голосовые сообщения</li>
-                                <li class="profile-descrp__text"><span>-</span>видео архив</li>
-                                <li class="profile-descrp__text"><span>-</span>видеоособщения</li>
-                                <li class="profile-descrp__text"><span>-</span>фото на заказ</li>
-                                <li class="profile-descrp__text"><span>-</span>видеозвонок</li>
-                                <li class="profile-descrp__text"><span>-</span>видео на заказ</li>
+                                @if($user->gender == \App\User::GENDER_FEMALE)
+                                    @php $services = $user->services @endphp
+                                    @foreach($services as $service)
+                                        <li class="profile-descrp__text"><span>-</span>{{$service}}</li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                         <div class="profile-descrp__block">
@@ -181,12 +182,23 @@
                             <span>{{$user->followers_count}}</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="profile-followers.html">
-                            <h5>Отзывы</h5>
-                            <span>12 | <span class="text-red">1</span></span>
-                        </a>
-                    </li>
+                    @if($user->gender == \App\User::GENDER_FEMALE)
+                        @if($user->vip)
+                            <li>
+                                <a href="profile-followers.html">
+                                    <h5>Отзывы</h5>
+                                    <span>12 | <span class="text-red">1</span></span>
+                                </a>
+                            </li>
+                        @else
+                            <li>
+                                <a href="profile-followers.html">
+                                    <h5>Отзывы</h5>
+                                    <p>Доступно только для VIP</p>
+                                </a>
+                            </li>
+                        @endif
+                    @endif
                 </ul>
             </div>
 

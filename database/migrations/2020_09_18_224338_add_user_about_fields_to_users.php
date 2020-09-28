@@ -15,7 +15,7 @@ class AddUserAboutFieldsToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->text('about')->nullable();
-            $table->string('services')->nullable();
+            $table->text('services')->nullable();
             $table->string('whatsapp')->nullable();
             $table->string('telegram')->nullable();
             $table->string('viber')->nullable();

@@ -53,7 +53,7 @@ Vue.component('messages-count', require('./components/MessagesCount').default);
 Vue.component('comment', require('./components/comment').default);
 Vue.component('comments', require('./components/Comments').default);
 Vue.component('text-publication', require('./components/TextPublication').default);
-
+Vue.component('women-list', require('./components/womenList').default);
 
 
 

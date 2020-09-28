@@ -254,9 +254,9 @@
                                     <li class="{{ (request()->is('*virt*')) ? 'active' : '' }} mobShow tape">
                                         <a href="{{ route('virt') }}">
                                             <div class="icon_li tape">
-                                                @auth
-                                                    <live-notifications :user="{{ Auth::user() }}"></live-notifications>
-                                                @endauth
+                                                {{--                                                @auth--}}
+                                                {{--                                                    <live-notifications :user="{{ Auth::user() }}"></live-notifications>--}}
+                                                {{--                                                @endauth--}}
                                             </div>
                                             <span>Вирт</span>
                                         </a>
@@ -424,22 +424,20 @@
                         @endguest
                         <ul class="site-info site-info_desctop">
                             <li>
-                                <a href="#">Условия</a>
+                                <a href="#">О проекте</a>
                             </li>
                             <li>
-                                <a href="#">Политика конфиденциальности</a>
+                                <a href="#">Правила</a>
                             </li>
                             <li>
-                                <a href="#">Файлы cookie</a>
+                                <a href="#">Помощь</a>
                             </li>
                             <li>
-                                <a href="/pages/support.html">Служба поддержки</a>
+                                <a href="/pages/support.html">Контакты</a>
                             </li>
                         </ul>
 
-                        <p style="margin-top: 5px" class="foot-info-site">© 2019 Lsecrets.ru - лента женских секретов,
-                            советов, вопросов и ответов. </p>
-                        <p style="margin-top: 5px" class="foot-info-site">Контакты: info@lsecrets.ru</p>
+                        <p class="foot-info-site">© 2020 virtsecrets.com</p>
                     </div>
                 </div>
 
@@ -858,6 +856,270 @@
     </div>
 </div>
 
+@auth
+    <div class="wrap-pop-up popUp" id="modal-settings">
+        <div class="pop-up-body popUp__body popUp__body_settings">
+            <div class="popUp__message">
+                <div class="close close-window"></div>
+                <div class="popUp__settings">
+                    <div class="settings-content-el">
+                        <div class="settings-content-el-top unselectable">
+                            <div class="settings-content-el-left">
+                                <span>Обо мне</span>
+                            </div>
+                            <div class="settings-content-el-right">
+                                <div class="arr_settigns">
+                                    <img src="/img/arr_blue.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="settings-content-el-body">
+                            <form class="form-settigns-el" method="post" action="{{route('save-about')}}">
+                                @csrf
+                                <textarea class="textarea about_textarea" maxlength="280">@if(auth()->user()->about != null){{auth()->user()->about}}@endif</textarea>
+                                <div class="btn-green">
+                                    <button type="submit">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="settings-content-el">
+                        <div class="settings-content-el-top unselectable">
+                            <div class="settings-content-el-left">
+                                <span>Ссылка</span>
+                            </div>
+                            <div class="settings-content-el-right">
+                                <div class="arr_settigns">
+                                    <img src="/img/arr_blue.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        @if(auth()->user()->vip)
+                            <div class="settings-content-el-body">
+                                <form class="form-settigns-el" method="post" action="{{route('save-link')}}">
+                                    @csrf
+                                    <input type="text" class="inp" name="link" value="{{auth()->user()->link}}">
+                                    <div class="btn-green">
+                                        <button type="submit">Сохранить</button>
+                                    </div>
+                                </form>
+                            </div>
+                        @else
+                            <div class="settings-content-el-body" style="display: block;">
+                                <form class="form-settigns-el">
+                                    <div class="vip-block">
+                                        <div class="vip-block__icon"></div>
+                                        <div class="vip-block__text">Доступно для VIP</div>
+                                    </div>
+                                    <div class="btn-green">
+                                        <button type="submit">Сохранить</button>
+                                    </div>
+                                </form>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="settings-content-el">
+                        <div class="settings-content-el-top unselectable">
+                            <div class="settings-content-el-left">
+                                <span>Вирт общение</span>
+                            </div>
+                            <div class="settings-content-el-right">
+                                <div class="arr_settigns">
+                                    <img src="/img/arr_blue.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-content-el-body">
+                            <form class="form-settigns-el" method="post" action="{{route('save-services')}}">
+                                @csrf
+                                <div class="checkboxes">
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="переписка" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">переписка</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="фото архив" class="checkbox__inp" >
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">фото архив</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="голосовые сообщения" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">голосовые сообщения</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="видео архив" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">видео архив</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="видеосообщения" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">видеосообщения</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="фото на заказ" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">фото на заказ</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="видеозвонок" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">видеозвонок</span>
+                                </label>
+                                <label class="checkboxes__el checkbox-el">
+                                    <span class="checkbox-el__checkbox checkbox">
+                                        <input type="checkbox" name="service[]" value="видео на заказ" class="checkbox__inp">
+                                        <span class="checkbox__dec"></span>
+                                    </span>
+                                    <span class="checkbox-el__text">видео на заказ</span>
+                                </label>
+                                </div>
+                                <div class="btn-green">
+                                    <button type="submit">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="settings-content-el">
+                        <div class="settings-content-el-top unselectable">
+                            <div class="settings-content-el-left">
+                                <span>Контакты</span>
+                            </div>
+                            <div class="settings-content-el-right">
+                                <div class="arr_settigns">
+                                    <img src="/img/arr_blue.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-content-el-body">
+                            <form class="form-settigns-el" method="post" action="{{route('save-contacts')}}">
+                                @csrf
+
+                                <div class="wrap-socialContacts">
+                                    <div class="wrap-socialContacts__el socialContact-el">
+                                        <div class="socialContact-el__left">
+                                            <img src="/img/socialContact/whatsapp.png" alt=""
+                                                 class="socialContact-el__icon">
+                                            <div class="socialContact-el__text">Whatsapp:</div>
+                                        </div>
+                                        @if(auth()->user()->vip)
+                                            <input type="text" class="socialContact-el__inp inp" name="whatsapp"
+                                                   value="{{auth()->user()->whatsapp}}">
+                                        @else
+                                            <div class="vip-block socialContact-el__inp">
+                                                <div class="vip-block__icon"></div>
+                                                <div class="vip-block__text">Доступно для VIP</div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="wrap-socialContacts__el socialContact-el">
+                                        <div class="socialContact-el__left">
+                                            <img src="/img/socialContact/tel.png" alt="" class="socialContact-el__icon">
+                                            <div class="socialContact-el__text">Telegram:</div>
+                                        </div>
+                                        @if(auth()->user()->vip)
+                                            <input type="text" class="socialContact-el__inp inp" name="telegram"
+                                                   value="{{auth()->user()->telegram}}">
+                                        @else
+                                            <div class="vip-block socialContact-el__inp">
+                                                <div class="vip-block__icon"></div>
+                                                <div class="vip-block__text">Доступно для VIP</div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="wrap-socialContacts__el socialContact-el">
+                                        <div class="socialContact-el__left">
+                                            <img src="/img/socialContact/viber.png" alt=""
+                                                 class="socialContact-el__icon">
+                                            <div class="socialContact-el__text">Viber:</div>
+                                        </div>
+                                        @if(auth()->user()->vip)
+                                            <input type="text" class="socialContact-el__inp inp" name="viber"
+                                                   value="{{auth()->user()->viber}}">
+                                        @else
+                                            <div class="vip-block socialContact-el__inp">
+                                                <div class="vip-block__icon"></div>
+                                                <div class="vip-block__text">Доступно для VIP</div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="wrap-socialContacts__el socialContact-el">
+                                        <div class="socialContact-el__left">
+                                            <img src="/img/socialContact/skype.png" alt=""
+                                                 class="socialContact-el__icon">
+                                            <div class="socialContact-el__text">Skype:</div>
+                                        </div>
+                                        @if(auth()->user()->vip)
+                                            <input type="text" class="socialContact-el__inp inp" name="skype"
+                                                   value="{{auth()->user()->skype}}">
+                                        @else
+                                            <div class="vip-block socialContact-el__inp">
+                                                <div class="vip-block__icon"></div>
+                                                <div class="vip-block__text">Доступно для VIP</div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="btn-green">
+                                    <button type="submit">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="settings-content-el">
+                        <div class="settings-content-el-top unselectable">
+                            <div class="settings-content-el-left">
+                                <span>Теги</span>
+                            </div>
+                            <div class="settings-content-el-right">
+                                <div class="arr_settigns">
+                                    <img src="/img/arr_blue.svg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="settings-content-el-body" style="display: none;">
+                            <form class="form-settigns-el" method="post" action="{{route('save-tags')}}">
+                                @csrf
+                                <div class="select">
+                                    @php $tags = \App\Tag::all() @endphp
+                                    <select class="select_jq select2-hidden-accessible"
+                                            data-placeholder="выберите не более 4-х тегов, начните вводить текст"
+                                            multiple="" data-select2-id="2" tabindex="-1" aria-hidden="true"
+                                            name="tags[]">
+                                        @foreach($tags as $tag)
+                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="btn-green">
+                                    <button type="submit">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endauth
+
 @yield('scripts')
 
 <script src="/js/jquery.fancybox.min.js"></script>
@@ -951,6 +1213,24 @@
         let url = '/feedbacks/submit/' + id;
         form.attr('action', url);
     }
+</script>
+
+<script>
+    $(document).ready(function () {
+       $('.form-settigns-el').on('submit', function () {
+           let url = $(this).attr('action');
+           let data = $(this).serialize();
+
+           $.post(url, data).then((resp) => {
+               let firstParent = $(this).parent();
+               let secondParent = $(this).parent().parent();
+               secondParent.removeClass('active');
+               firstParent.slideUp(250);
+           });
+
+           return false;
+       })
+    });
 </script>
 
 </body>

@@ -226,7 +226,7 @@ class CommentController extends Controller
         return response()->json(array('comment' => $reply, 'images' => $reply_images));
     }
 
-    /*public function like(Request $request)
+    public function like(Request $request)
     {
         Auth::user()->like($request->post('comment_id'), Comment::class);
         echo 'dislike';
@@ -236,7 +236,7 @@ class CommentController extends Controller
     {
         Auth::user()->unlike($request->post('comment_id'), Comment::class);
         echo 'like';
-    }*/
+    }
 
     public function upvote(Request $request)
     {

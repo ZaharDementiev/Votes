@@ -5149,8 +5149,8 @@ section.sec-profile .write-message {
       background: #bdddcc;
       color: #42978a;
       box-shadow: none; }
-  .profile_user .profile_user_btn.unscribe {
-    display: none; }
+  /*.profile_user .profile_user_btn.unscribe {*/
+  /*  display: none; }*/
   .profile_user .profile_user_btn a {
     margin: 0 auto;
     max-width: 245px;
@@ -7467,3 +7467,15 @@ section.sec-profile .write-message {
       margin-right: 0; }
   .btn-green_nobtn {
     width: 140px; } }
+
+.about_textarea {
+  resize: none;
+  box-shadow: none !important;
+  display: block;
+  width: 100%;
+  height: 142px;
+  border-radius: 25px;
+  border: solid 2px #f8e9e6;
+  background-color: #ffffff;
+  padding: 20px 20px;
+}

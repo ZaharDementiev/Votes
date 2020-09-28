@@ -84,19 +84,19 @@
                 <div class="textarea" data-bool="1">
                     <div class="textarea-block maxlength">
                         <textarea class="textarea-block__textarea" maxlength="280" data-emojiable="true" placeholder="Напишите сообщение"></textarea>
-                        <div class="textarea-block-media">
-                            <div class="textarea-block-media_el">
-                                <div class="load_media">
-                                    <label class="unselectable">
-                                        <input @change="onFileChange($event)"
-                                               data-maxfiles="2"
-                                               type="file" ref="files" multiple
-                                               name="files[]" style="display:none;"/>
-                                        <img src="/img/camera.svg" alt="">
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="textarea-block-media">-->
+<!--                            <div class="textarea-block-media_el">-->
+<!--                                <div class="load_media">-->
+<!--                                    <label class="unselectable">-->
+<!--                                        <input @change="onFileChange($event)"-->
+<!--                                               data-maxfiles="2"-->
+<!--                                               type="file" ref="files" multiple-->
+<!--                                               name="files[]" style="display:none;"/>-->
+<!--                                        <img src="/img/camera.svg" alt="">-->
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                     <div class="input-el__media">
                         <p>Осталось - <span class="count_limit">280</span></p>

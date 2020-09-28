@@ -225,6 +225,8 @@ class PostController extends Controller
             }
         }
 
+        log($post->tupe);
+
         if ($post->type == 'vote') {
             foreach ($request->post('options') as $name) {
                 $option = new Option();

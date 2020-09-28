@@ -184,3 +184,8 @@ Route::post('transaction/submit', 'TransactionController@make')->name('transacti
 
 Route::get('virt', 'HomeController@virts')->name('virt')->middleware('auth');
 Route::post('virt/search', 'HomeController@sort')->name('virt-search');
+Route::post('save/about', 'UserController@saveAbout')->name('save-about');
+Route::post('save/link', 'UserController@saveLink')->name('save-link');
+Route::post('save/contacts', 'UserController@saveContacts')->name('save-contacts');
+Route::post('save/services', 'UserController@saveServices')->name('save-services');
+Route::post('save/tags', 'UserController@saveTags')->name('save-tags');
